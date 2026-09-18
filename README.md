@@ -1,41 +1,42 @@
 # Kids Memory Match
 
-Kids Memory Match is a four-level SVG card-matching game developed within the same multi-game interactive children’s edutainment activation in the UAE as the other `kids-*` game repositories.
+Kids Memory Match is a four-level SVG card-matching game.
 
-## Game structure
+## How it plays
 
-The player flips two cards at a time and attempts to match identical SVG images.
+The player flips two cards at a time and tries to find identical SVG images.
 
-**flip first card → flip second card → match or mismatch → update matched cards/lives → complete all pairs → advance level**
+**flip first card → flip second card → match or mismatch → update lives → complete all pairs → advance level**
 
-The current frontend implements:
+Progression:
 
 - Level 1: 2 pairs / 4 cards
 - Level 2: 3 pairs / 6 cards
 - Level 3: 4 pairs / 8 cards
 - Level 4: 5 pairs / 10 cards
 
-Each level starts with three lives. A mismatched pair removes one life. Completing a level restores three lives for the next level. Victory occurs after the available SVG image set has been used through the progression.
+Each level starts with three lives. A mismatch removes one life. Completing a level restores three lives for the next level. Victory is reached after the available SVG image set has been used through the progression.
 
-## Repository structure
+## Implementation
 
-- `frontend/` — React memory-matching game and SVG card assets
-- `backend/` — FastAPI/MongoDB status-check scaffold
-- `tests/` and `test_reports/` — historical test material
-- `test_result.md` — historical test summary
+The playable frontend is a React application in `frontend/`.
 
-The visible game logic in `frontend/src/App.js` does not depend on the backend status-check routes.
+Key implementation details:
 
-## Related repository lineage
+- React state manages level, cards, flipped cards, matched cards, lives, timer and fullscreen state.
+- SVG card artwork is loaded from `frontend/public/cards/`.
+- card pairs are shuffled for each level;
+- Framer Motion handles interface/card animation;
+- `react-confetti` is used for completion feedback;
+- fullscreen mode is supported;
+- the backend folder contains a separate FastAPI/MongoDB status-check scaffold and is not required by the visible game loop.
 
-The current `frontend/src/App.js` is byte-identical to the corresponding game file in `Joenasriani/kids-svg`, establishing a direct shared implementation state at the audited revisions.
+## Event activation
 
-Both repositories are preserved independently. This relationship does not authorize merging, deleting, renaming, archiving or replacing either repository.
+This game was developed as one module in a multi-game interactive children’s edutainment activation in the UAE.
 
-## Deployment status
+Event production: [Peach Society](https://peach-society.com/) — Dubai-based event and experiential production company.
 
-The repository Homepage field currently points to `https://kids-match.vercel.app`, which returned 404 during the audit. No working public deployment is therefore claimed here.
+## Related implementation
 
-## Preservation boundary
-
-The frontend, backend, SVG assets, level progression, lives logic, matching behavior, timer behavior, animations, tests and historical development files are preserved. This documentation pass does not alter gameplay or runtime behavior.
+`kids-match`, `kids-svg`, and `kids-svg-game` contain closely related Memory Match development states. They are separate repository records of the same game family.
